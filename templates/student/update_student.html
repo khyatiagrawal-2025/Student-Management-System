@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Student</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen p-8">
+
+<!-- Header -->
+<div class="max-w-4xl mx-auto text-center mb-12">
+  <h1 class="text-5xl font-extrabold text-gray-800 mb-3 drop-shadow-lg">
+    Update Student
+  </h1>
+  <p class="text-gray-500 text-lg">
+    Modify the student details below
+  </p>
+</div>
+
+<!-- Form Container -->
+<div class="max-w-2xl mx-auto bg-white shadow-xl rounded-2xl p-8">
+
+  <form class="space-y-6">
+        {% csrf_token %}
+    <!-- Name -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-2">
+        Student Name
+      </label>
+      <input type="text" value="{{ student.name }}"
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-2">
+        Email Address
+      </label>
+      <input type="email" value="{{ student.email }}"
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+
+    <!-- Phone -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-2">
+        Phone Number
+      </label>
+      <input type="text" value="{{ student.phone_number }}"
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+
+    <!-- Course -->
+    <div>
+      <label class="block text-gray-700 font-semibold mb-2">
+        Course
+      </label>
+      <input type="text" value="{{ student.course }}"
+      class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-between pt-4">
+
+      <a href="index.html"
+      class="px-6 py-3 bg-gray-300 rounded-lg hover:bg-gray-400 transition">
+        Cancel
+      </a>
+
+      <button
+      class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition shadow-md">
+        <i class="fas fa-save mr-2"></i> Save Update
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+</body>
+</html>
