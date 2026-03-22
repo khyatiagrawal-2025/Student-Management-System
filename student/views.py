@@ -46,7 +46,7 @@ def update_student(request, id):
     if request.method == "POST":
         student.name = request.POST.get("name")
         student.email = request.POST.get("email")
-        student.phone_number = request.POST.get("phone")
+        student.phone_number = request.POST.get("phone_number")
         student.course = request.POST.get("course")
 
         student.save()
@@ -57,4 +57,4 @@ def update_student(request, id):
         "student": student
     }
 
-    return render(request, "student/update_student.html")
+    return render(request, "student/update_student.html", parameters)

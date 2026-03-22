@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Dashboard</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 </head>
+
 <body class="bg-gray-100 min-h-screen p-8">
 
 <!-- Header -->
@@ -17,17 +20,22 @@
   <p class="text-gray-500 text-lg md:text-xl mb-6">
     Manage all your students efficiently in one place
   </p>
-  <a href="{% url 'add_student' %}" class="bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-transform">
+
+  <a href="{% url 'add_student' %}" 
+     class="inline-block bg-gradient-to-r from-green-400 to-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-transform">
     <i class="fas fa-plus mr-2"></i> Add Student
   </a>
 </div>
+
 <!-- Cards Container -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+<div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
 {% for student in students_data %}
 
+  <!-- Card -->
   <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:scale-105 transition-transform hover:shadow-2xl">
-    
+
+    <!-- Header -->
     <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-4 flex items-center gap-4">
       <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-blue-600 font-bold text-lg shadow-lg">
         {{ student.name|slice:":1" }}
@@ -38,7 +46,9 @@
       </div>
     </div>
 
+    <!-- Content -->
     <div class="p-6 space-y-3">
+
       <p class="text-gray-700">
         <i class="fas fa-envelope mr-2 text-gray-500"></i> {{ student.email }}
       </p>
@@ -47,35 +57,31 @@
         <i class="fas fa-phone mr-2 text-gray-500"></i> {{ student.phone_number }}
       </p>
 
-      <!-- Buttons -->
-      <div class="flex flex-col gap-3 mt-4">
-        <div class="flex flex-wrap gap-3">
-          <button class="flex items-center gap-2 bg-gray-200 text-gray-800 px-3 py-1 rounded hover:bg-gray-300 transition">
-            <i class="fas fa-eye"></i> Read
-          </button>
+      <!-- Update & Delete -->
+      <div class="grid grid-cols-2 gap-3 mt-4">
+        <a href="{% url 'update_student' student.id %}" 
+           class="flex items-center justify-center gap-2 bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600 transition">
+          <i class="fas fa-pen"></i> Update
+        </a>
 
-          <button class="flex items-center gap-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-            <a href="{% url 'update_student' student.id %}" class="fas fa-pen"></i> Update
-          </button>
-
-          <button class="flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
-            <a href="{% url 'delete_student' student.id %}" class="fas fa-trash"></i> 
-              Delete
-              </a>
-          </button>
-        </div>
-
-        <!-- Call Button -->
-        <a href="tel:{{ student.phone_number }}" class="flex items-center justify-center gap-2 bg-green-500 text-white px-4 py-3 rounded-xl text-lg font-semibold hover:bg-green-600 transition">
-          <i class="fas fa-phone"></i> Call
+        <a href="{% url 'delete_student' student.id %}" 
+           class="flex items-center justify-center gap-2 bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition">
+          <i class="fas fa-trash"></i> Delete
         </a>
       </div>
-    </div>
 
+      <!-- Call Button -->
+      <a href="tel:{{ student.phone_number }}" 
+         class="flex items-center justify-center gap-2 bg-green-500 text-white px-4 py-3 rounded-xl text-lg font-semibold hover:bg-green-600 transition">
+        <i class="fas fa-phone"></i> Call
+      </a>
+
+    </div>
   </div>
 
 {% endfor %}
 
 </div>
+
 </body>
 </html>
